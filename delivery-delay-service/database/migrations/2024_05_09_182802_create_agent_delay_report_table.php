@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('delay_reports', function (Blueprint $table) {
+        Schema::create('agent_delay_report', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->nullable()->constrained("orders")->cascadeOnDelete();
-            $table->enum('status', ["processing", "waiting", "processed"]);
+            $table->foreignId('agent_id')->nullable()->constrained("agents")->cascadeOnDelete();
+            $table->foreignId('delay_report_id')->nullable()->constrained("delay_reports")->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('delay_reports', function (Blueprint $table) {
+        Schema::table('agent_delay_report', function (Blueprint $table) {
             //
         });
     }

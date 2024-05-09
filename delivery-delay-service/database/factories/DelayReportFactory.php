@@ -19,7 +19,6 @@ class DelayReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'agent_id' => Agent::factory()->create()->id,
             'order_id' => Order::factory()->create()->id,
             'status' => $this->faker->randomElement(["PROCESSING", "WAITING", "PROCESSED"])
         ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\DelayReportStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -20,14 +21,15 @@ class OrderController extends Controller
             
             $newDeliveryTime = $this->ifOrderExistsInTrip($order);
 
-            return response()->json([
-                'message' => 'Your order will take at ' . $newDeliveryTime . ' minutes later',
-                'minutes' => $newDeliveryTime
-            ]);
+            if ($this->orderRepository->createDelayReport($order, DelayReportStatus::PROCESSED)) {
+                return response()->json([
+                    'message' => 'Your order will take at ' . $newDeliveryTime . ' minutes later',
+                    'minutes' => $newDeliveryTime
+                ]);
+            }
         } 
                         
-        if ($this->orderRepository->createDelayReport($order)){
-
+        if ($this->orderRepository->createDelayReport($order, DelayReportStatus::WAITING)) {
             return response()->json([
                 "status" => "Success"
             ]);

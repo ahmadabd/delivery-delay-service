@@ -2,15 +2,14 @@
 
 namespace App\Repositories\Order;
 
-use App\Enums\DelayReportStatus;
 use App\Enums\TripStatus;
 use App\Models\Order;
 
 class OrderImp implements OrderInt {
-    public function createDelayReport(Order $order)
+    public function createDelayReport(Order $order, $status)
     {
         $order->delayReports()->create([
-            'status' => DelayReportStatus::WAITING
+            'status' => $status
         ]);
 
         return true;
