@@ -17,8 +17,6 @@ class VendorTest extends TestCase
     {
         $vendor = Vendor::factory()->create();
 
-        dd($vendor);
-
         $order = Order::factory()->create([
             'vendor_id' => $vendor->id
         ]);
@@ -31,6 +29,14 @@ class VendorTest extends TestCase
 
         $response = $this->getJson(route("vendorReports", $vendor));
 
-        dd($response->json());
+        $response->assertStatus(200)
+            ->assertJson([
+                [
+                    'id' => $delayReport1->id,
+                ],
+                [
+                    'id' => $delayReport2->id,
+                ]
+            ]);
     }
 }

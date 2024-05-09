@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('delay/reports/{id}', [VendorController::class, 'report'])->name("vendorReports");
+Route::get('delay/reports/{vendor}', [VendorController::class, 'report'])->name("vendorReports");
