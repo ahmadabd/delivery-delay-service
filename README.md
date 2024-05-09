@@ -11,5 +11,8 @@ or
 ## Running migrations
 >> ./vendor/bin/sail artisan migrate
 
+## Running seeders 
+>> ./vendor/bin/sail artisan db:seed
+
 ## Running tests
 >> ./vendor/bin/sail artisan test
