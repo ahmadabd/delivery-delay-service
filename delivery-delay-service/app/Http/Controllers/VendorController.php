@@ -16,6 +16,6 @@ class VendorController extends Controller
     // This method returns a vendor delays for one week
     public function reportWeekly(Request $request, Vendor $vendor)
     {
-        return response()->json(VendorReportResource::collection($this->vendorRepository->vendorDelayReport($vendor)));
+        return response()->json(VendorReportResource::collection($this->vendorRepository->getVendorDelays($vendor)));
     }
 }

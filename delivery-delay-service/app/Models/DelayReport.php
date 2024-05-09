@@ -10,6 +10,8 @@ class DelayReport extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['status'];
+
     // Relations
     public function order(): BelongsTo
     {

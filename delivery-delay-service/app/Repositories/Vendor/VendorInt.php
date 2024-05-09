@@ -6,5 +6,5 @@ use App\Models\Vendor;
 
 interface VendorInt
 {
-    public function vendorDelayReport(Vendor $vendor);
+    public function getVendorDelays(Vendor $vendor);
 }

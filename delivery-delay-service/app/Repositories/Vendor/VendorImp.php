@@ -6,7 +6,7 @@ use App\Models\Vendor;
 use App\Repositories\Vendor\VendorInt;
 
 class VendorImp implements VendorInt {
-    public function vendorDelayReport(Vendor $vendor)
+    public function getVendorDelays(Vendor $vendor)
     {
         $oneWeekAgo = now()->subWeek();
 

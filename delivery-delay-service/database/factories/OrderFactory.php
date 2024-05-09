@@ -21,7 +21,7 @@ class OrderFactory extends Factory
         return [
             'user_id' => User::factory()->create()->id,
             'vendor_id' => Vendor::factory()->create()->id,
-            'delivery_time' => $this->faker->numberBetween([1, 100]),
+            'delivery_time' => 50,
             'delivery_address' => $this->faker->address()
         ];
     }

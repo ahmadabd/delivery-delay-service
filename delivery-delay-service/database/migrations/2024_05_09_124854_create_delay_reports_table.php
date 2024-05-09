@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('agent_id')->nullable()->constrained("agents")->cascadeOnDelete();
             $table->foreignId('order_id')->nullable()->constrained("orders")->cascadeOnDelete();
-            $table->enum('status', ["PROCESSING", "WAITING", "PROCESSED"]);
+            $table->enum('status', ["processing", "waiting", "processed"]);
             $table->timestamps();
         });
     }

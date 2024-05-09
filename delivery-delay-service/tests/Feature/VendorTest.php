@@ -30,7 +30,7 @@ class VendorTest extends TestCase
             'created_at' => Carbon::now()->subMonth()->startOfDay()
         ]);
 
-        $response = $this->getJson(route("vendorReports", $vendor));
+        $response = $this->getJson(route("vendorReportsWeekly", $vendor));
 
         $response->assertStatus(200)
             ->assertJson([

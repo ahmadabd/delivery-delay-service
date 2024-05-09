@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('vendor/delay/reports/{vendor}', [VendorController::class, 'reportWeekly'])->name("vendorReports");
-Route::post('report/order/delay/{order}', [OrderController::class, 'delayReport'])->name("OrderDelayReport");
+Route::get('vendor/delay/reports/{vendor}', [VendorController::class, 'reportWeekly'])->name("vendorReportsWeekly");
+Route::get('report/order/delay/{order}', [OrderController::class, 'delayReport'])->name("OrderDelayReport");

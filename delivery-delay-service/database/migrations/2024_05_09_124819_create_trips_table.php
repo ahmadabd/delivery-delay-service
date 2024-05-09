@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->nullable()->constrained("orders")->cascadeOnDelete();
-            $table->enum('status', ['ASSIGNED', 'AT_VENDOR', 'PICKED', 'DELIVERED']);
+            $table->enum('status', ['assigned', 'at_vendor', 'picked', 'delivered']);
             $table->timestamps();
         });
     }
