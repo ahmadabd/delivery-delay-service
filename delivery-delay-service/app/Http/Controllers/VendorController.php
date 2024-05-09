@@ -13,7 +13,8 @@ class VendorController extends Controller
     public function __construct(public VendorInt $vendorRepository)
     {}
 
-    public function report(Request $request, Vendor $vendor)
+    // This method returns a vendor delays for one week
+    public function reportWeekly(Request $request, Vendor $vendor)
     {
         return response()->json(VendorReportResource::collection($this->vendorRepository->vendorDelayReport($vendor)));
     }

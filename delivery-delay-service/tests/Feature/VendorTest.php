@@ -6,6 +6,7 @@ use App\Models\DelayReport;
 use App\Models\Order;
 use App\Models\Vendor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class VendorTest extends TestCase
@@ -22,9 +23,11 @@ class VendorTest extends TestCase
         ]);
         $delayReport1 = DelayReport::factory()->create([
             'order_id' => $order->id,
+            'created_at' => Carbon::now()->subWeek()->startOfDay()
         ]);
-        $delayReport2 = DelayReport::factory()->create([
+        DelayReport::factory()->create([
             'order_id' => $order->id,
+            'created_at' => Carbon::now()->subMonth()->startOfDay()
         ]);
 
         $response = $this->getJson(route("vendorReports", $vendor));
@@ -33,9 +36,6 @@ class VendorTest extends TestCase
             ->assertJson([
                 [
                     'id' => $delayReport1->id,
-                ],
-                [
-                    'id' => $delayReport2->id,
                 ]
             ]);
     }
