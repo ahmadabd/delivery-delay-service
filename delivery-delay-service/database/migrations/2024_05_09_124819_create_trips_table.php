@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('vendors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->json('title')->nullable();
-            $table->json('description')->nullable();
-            $table->boolean('active')->default(1);
+        Schema::create('trips', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('order_id')->nullable()->constrained("orders")->cascadeOnDelete();
+            $table->enum('status', ['ASSIGNED', 'AT_VENDOR', 'PICKED', 'DELIVERED']);
             $table->timestamps();
         });
     }
@@ -25,8 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('vendors', function (Blueprint $table) {
-            Schema::drop('vendors');
+        Schema::table('trips', function (Blueprint $table) {
+            //
         });
     }
 };
