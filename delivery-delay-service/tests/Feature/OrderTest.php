@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Enums\DelayReportStatus;
 use App\Enums\TripStatus;
+use App\Models\DelayReport;
 use App\Models\Order;
 use App\Models\Trip;
 use App\Models\Vendor;
@@ -50,6 +52,26 @@ class OrderTest extends TestCase
 
         $response->assertJson([
             'status' => 'Success',
+        ]);
+    }
+
+    /** @test */
+    public function check_reports_when_another_delay_report_exists() 
+    { 
+        $vendor = Vendor::factory()->create();
+        $order = Order::factory()->create([
+            'vendor_id' => $vendor->id
+        ]);
+
+        DelayReport::factory()->create([
+            'order_id' => $order->id,
+            'status' => DelayReportStatus::PROCESSING,
+        ]);
+
+        $response = $this->getJson(route('OrderDelayReport', $order));
+
+        $response->assertJson([
+            'status' => 'Failed',
         ]);
     }
 }

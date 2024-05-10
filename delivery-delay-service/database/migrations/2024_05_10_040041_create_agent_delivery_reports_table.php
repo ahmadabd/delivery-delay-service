@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agent_delay_report', function (Blueprint $table) {
+        Schema::create('agent_delivery_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agent_id')->nullable()->constrained("agents")->cascadeOnDelete();
             $table->foreignId('delay_report_id')->nullable()->constrained("delay_reports")->cascadeOnDelete();
@@ -24,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('agent_delay_report', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('agent_delivery_reports');
     }
 };

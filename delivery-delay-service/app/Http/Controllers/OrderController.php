@@ -35,7 +35,8 @@ class OrderController extends Controller
             ]);
         } else {
             return response()->json([
-                "status" => "Failed"
+                "status" => "Failed",
+                "message" => "Another processing delay report exists"
             ]);
         }
     }
