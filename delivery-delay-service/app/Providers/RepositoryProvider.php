@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Agent\AgentImp;
+use App\Repositories\Agent\AgentInt;
 use App\Repositories\Order\OrderImp;
 use App\Repositories\Order\OrderInt;
 use App\Repositories\Vendor\VendorImp;
@@ -20,6 +22,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(VendorInt::class, VendorImp::class);
 
         $this->app->bind(OrderInt::class, OrderImp::class);
+
+        $this->app->bind(AgentInt::class, AgentImp::class);
     }
 
     /**

@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use App\Enums\DelayReportStatus;
 use App\Models\Agent;
-use App\Models\AgentDeliveryReport;
+use App\Models\AgentDelayReport;
 use App\Models\DelayReport;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AgentTest extends TestCase
@@ -25,7 +24,7 @@ class AgentTest extends TestCase
 
         $this->getJson(route('requestForNewDelayReport', $agent));
     
-        $this->assertDatabaseHas('agent_delivery_reports', [
+        $this->assertDatabaseHas('agent_delay_reports', [
             'agent_id' => $agent->id
         ]);
 
@@ -43,7 +42,7 @@ class AgentTest extends TestCase
 
         $agent = Agent::factory()->create();
 
-        AgentDeliveryReport::factory()->create([
+        AgentDelayReport::factory()->create([
             'delay_report_id' => $delayReport->id,
             'agent_id' => $agent->id
         ]);

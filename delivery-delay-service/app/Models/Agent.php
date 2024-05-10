@@ -13,6 +13,6 @@ class Agent extends Model
     // Relations
     public function delayReport(): BelongsToMany
     {
-        return $this->belongsToMany(DelayReport::class, 'agent_delivery_reports');
+        return $this->belongsToMany(DelayReport::class, 'agent_delay_reports');
     }
 }

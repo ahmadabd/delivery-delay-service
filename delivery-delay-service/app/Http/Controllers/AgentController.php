@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\DelayReportStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Agent;
-use App\Models\DelayReport;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Agent\AgentInt;
 
 class AgentController extends Controller
 {
+    public function __construct(public AgentInt $agentRepository)
+    {}
+
     public function requestForNewDelayReport(Request $request, Agent $agent)
     {
-        if (!$agent->delayReport()->where('status', DelayReportStatus::PROCESSING)->exists()) {
+        if (!$this->agentRepository->checkAgentHasProcessingDelayReport($agent)) {
             
-            $delayReport = DelayReport::where('status', DelayReportStatus::WAITING)->oldest()->first();
-            
-            DB::transaction(function () use ($agent, $delayReport) {
-                $agent->delayReport()->attach($delayReport);
-                
-                $delayReport->status = DelayReportStatus::PROCESSING;
-                $delayReport->save();
-            });
+            $this->agentRepository->giveNewDelayReport($agent);
 
             return response()->json([
                 'status' => 'Success',
