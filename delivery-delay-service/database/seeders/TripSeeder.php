@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Vendor;
+use App\Models\Trip;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class VendorSeeder extends Seeder
+class TripSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Vendor::factory(10)->create();
+        Trip::factory(10)->create();
     }
 }
