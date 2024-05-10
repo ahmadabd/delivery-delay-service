@@ -1,7 +1,7 @@
 # delivery-delay-service
 Its a service for notify delay of delivery food to users.
 
-I have used Laravel 10 and Mysql as database and redis as queue manager for this project.
+I have used Laravel 10 and Mysql as database for this project.
 
 ## Database schema
 ![databaseSchema](./Schema.png)
