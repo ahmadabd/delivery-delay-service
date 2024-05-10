@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AgentController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('vendor/delay/reports/{vendor}', [VendorController::class, 'reportWeekly'])->name("vendorReportsWeekly");
+Route::get('report/order/delay/{order}', [OrderController::class, 'delayReport'])->name("OrderDelayReport");
+Route::get('new/report/agent/{agent}', [AgentController::class, 'requestForNewDelayReport'])->name('requestForNewDelayReport');
